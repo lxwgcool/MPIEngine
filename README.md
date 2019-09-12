@@ -3,6 +3,7 @@ Boost any exe with multiple processes by using different argument for each proce
 
 # How to use it
 Example 1: MPIEngine myprogram.exe config.ini
+
 Example 2: MPIEngine python mySourceCode.py config.ini
 
 # SBATCH Script Example:
