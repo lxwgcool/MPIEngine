@@ -14,73 +14,20 @@ int main(int argc,char *argv[])
          strcmp(argv[1], "-h") == 0)
         ))
     {
-        cout << "******************* MPI Engine *******************" << endl
-             << "1: Boost any exe with multiple processes by using different argument for each process" << endl
-             << "2: Example 1: MPIEngine myprogram.exe config.ini" << endl
-             << "   Example 2: MPIEngine python mySourceCode.py config.ini" << endl;
+        cout << "**************************************************" << endl
+             << "******************* UConn HPC ********************" << endl
+             << "******************* MPIEngine ********************" << endl
+             << "**************************************************" << endl
+             << "1: Boost any exe with multiple processes by using different argument for each process." << endl
+             << "2: Usage: (1) MPIEngine -n <number of cores> your_program" << endl
+             << "          (2) Fill the parameters into \"config.ini\". Each line is corresponding to all the arguments of one process." << endl
+             << "3: Example: there are three examples, and each of them applys 8 cores to run the program with multiple parameters of each." << endl
+             << "     E.g.1: mpirun -n 8 MPIEngine config.ini" << endl
+             << "     E.g.2: mpirun -n 8 MPIEngine myprogram.exe config.ini" << endl
+             << "     E.g.3: mpirun -n 8 MPIEngine python mySourceCode.py config.ini" << endl;
     }
     else
     {
         ClsOpenMPI::GetInstance()->MPIForMultiConfigs(argc, argv);
     }
 }
-
-
-//int main(int argc,char *argv[])
-//{
-//        int iMyid, iNumProcs;
-//        int iNameLen;
-//        char cProcessor_name[MPI_MAX_PROCESSOR_NAME];
-//       char message[30];
-//       int myrank = -1;
-//       MPI_Status status;
-//       MPI_Init(&argc,&argv);
-//       MPI_Comm_rank(MPI_COMM_WORLD,&myrank);
-//       MPI_Comm_size(MPI_COMM_WORLD, &iNumProcs);
-//       MPI_Get_processor_name(cProcessor_name, &iNameLen);
-
-//       // Print off a hello world message
-//       cout << "Hello World!"
-//            << " Process " << myrank
-//            << ", of " << iNumProcs
-//            << ", on " << cProcessor_name << endl;
-////       //printf("Hello World!  Process &d, , of , %d, on %s/n", myrank, iNumProcs, cProcessor_name);
-////       printf("Hello World!  Process %d/n", myrank);
-////        if(myrank==0)
-////        {
-////             strcpy(message,"Hello,process 1");
-////             MPI_Send(message,strlen(message),MPI_CHAR,1,99,MPI_COMM_WORLD);
-////        }
-////        else if(myrank==2)
-////        {
-////             MPI_Recv(message,20,MPI_CHAR,0,99,MPI_COMM_WORLD,&status);
-////             printf("received:%s/n",message);
-////        }
-
-//      if(myrank == 1)
-//      {
-//             strcpy(message,"Hello,process lxwgcool");
-//             MPI_Send(message, 30, MPI_CHAR, 3, 990, MPI_COMM_WORLD);
-//      }
-//      else if(myrank == 3)
-//      {
-//             MPI_Recv(message, 30, MPI_CHAR, 1, 990, MPI_COMM_WORLD, &status);
-//             //cout << myrank << " Process Received: " << message << endl;
-//             printf(" %d received:%s/n", myrank, message);
-//      }
-
-////      if(myrank==0)
-////      {
-////             strcpy(message,"Hello,process lxwgcool");
-////             MPI_Send(message,strlen(message),MPI_CHAR,1,99,MPI_COMM_WORLD);
-////      }
-////      else if(myrank==1)
-////      {
-////             MPI_Recv(message,30,MPI_CHAR,0,99,MPI_COMM_WORLD,&status);
-////             printf(" %d received:%s/n", myrank, message);
-////      }
-
-//       cout << " ---- " << endl;
-//       MPI_Finalize();
-//       return 0;
-//}

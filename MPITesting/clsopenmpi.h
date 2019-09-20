@@ -59,6 +59,7 @@ public:
 
 private:
     string GetArg(string strConfigFile, int iRank);
+    string MPIRunArg2(int iRank, string strConfigFile); // Contain 2 argument. The configure file contains full command line, including exe and parameters.
     string MPIRunArg3(int iRank, string strYourExe, string strConfigFile); //Contain 3 argument (The first argument is always the name of current program "MPIEngine")
     string MPIRunArg4(int iRank, string strBinaryExe, string strYourSourceFile, string strConfigFile); //Contain 4 argument
 };

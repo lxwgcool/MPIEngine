@@ -16,7 +16,7 @@ ClsOpenMPI::ClsOpenMPI()
 }
 
 void ClsOpenMPI::MPIForMultiConfigs(int argc, char* argv[])
-{
+{    
     //Do MPI
     int iRank, iNumProcs, iProcsNameLen;
     char cProcessor_name[MPI_MAX_PROCESSOR_NAME];
@@ -41,9 +41,12 @@ void ClsOpenMPI::MPIForMultiConfigs(int argc, char* argv[])
 //           cout << endl;
 //    }
 
-    string strCmd = "";
+    string strCmd = "";        
     switch(argc)
     {
+        case 2:
+            strCmd = MPIRunArg2(iRank, argv[1]);
+            break;
         case 3:
             strCmd = MPIRunArg3(iRank, argv[1], argv[2]);
             break;
@@ -54,11 +57,19 @@ void ClsOpenMPI::MPIForMultiConfigs(int argc, char* argv[])
             cout << "Wrong Arugments" << endl;
             break;
     }
-    if(strCmd != "")
+
+    try
     {
-        cout << strCmd
-             << "---" << endl;
-        system(strCmd.c_str());
+        if(strCmd != "")
+        {
+            cout << strCmd
+                 << "---" << endl;
+            system(strCmd.c_str());
+        }
+    }
+    catch(...)
+    {
+        cout << "Customized Command Line running error!" << endl;
     }
 
     MPI_Finalize();
@@ -88,6 +99,11 @@ string ClsOpenMPI::GetArg(string strConfigFile, int iRank)
 
         return strLine;
     }
+}
+
+string ClsOpenMPI::MPIRunArg2(int iRank, string strConfigFile)
+{
+    return GetArg(strConfigFile, iRank);
 }
 
 string ClsOpenMPI::MPIRunArg3(int iRank, string strYourExe, string strConfigFile) // e.g. MPIEngine YourProgram arguments
